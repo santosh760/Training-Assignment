@@ -123,7 +123,9 @@ public class PEMService {
 		in.nextLine();
 		String remark=in.nextLine();
 		
-		Date date=new Date();
+		System.out.print("Enter Date in DD/MM/YY format :");
+		String dateAsString=in.nextLine();
+		Date date=DateUtil.stringToDate(dateAsString);
 		
 		Expense exp=new Expense();
 		exp.setCategoryId(selectedCat.getCategoryId());
@@ -142,10 +144,12 @@ public class PEMService {
 		for(int i=0;i<expList.size();i++){
 			Expense exp=expList.get(i);
 			String catName=getCategoryNameById(exp.getCategoryId());
-			System.out.println((i+1)+" "+catName+" "+exp.getAmount()+" "+exp.getDate());
+			String dateString=DateUtil.dateToString(exp.getDate());
+			System.out.println((i+1)+" "+catName+" "+exp.getAmount()+" "+dateString);
 		}
 		
 	}
+	
 	
 	public void onReportMonthly(){
 		System.out.println("Monthly Reporting...");
