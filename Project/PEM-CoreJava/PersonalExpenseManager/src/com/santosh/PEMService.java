@@ -1,6 +1,8 @@
 package com.santosh;
 
 import java.io.IOException;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
 
@@ -108,11 +110,41 @@ public class PEMService {
 	}
 	
 	public void onExpenseEntry(){
-		System.out.println("Expense Entry...");
+		System.out.println("Enter Details For Expense Entry :");
+		onCategoryList();
+		System.out.print("Choose Category :");
+		int catChoice=in.nextInt();
+		Category selectedCat= repo.catList.get(catChoice-1);
+		
+		System.out.print("Enter Amouut : ");
+		float amount=in.nextFloat();
+		
+		System.out.print("Enter Remark : ");
+		in.nextLine();
+		String remark=in.nextLine();
+		
+		Date date=new Date();
+		
+		Expense exp=new Expense();
+		exp.setCategoryId(selectedCat.getCategoryId());
+		exp.setAmount(amount);
+		exp.setRemark(remark);
+		exp.setDate(date);
+		
+		repo.expList.add(exp);
+		System.out.println("Expense Added...");
+		
 	}
 	
 	public void onExpenseList(){
-		System.out.println("Expense Listing...");
+		System.out.println("Expense List");
+		List<Expense> expList=repo.expList;
+		for(int i=0;i<expList.size();i++){
+			Expense exp=expList.get(i);
+			String catName=getCategoryNameById(exp.getCategoryId());
+			System.out.println((i+1)+" "+catName+" "+exp.getAmount()+" "+exp.getDate());
+		}
+		
 	}
 	
 	public void onReportMonthly(){
@@ -134,5 +166,15 @@ public class PEMService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	String getCategoryNameById(Long CategoryId){
+		for(Category c:repo.catList){
+			if(c.getCategoryId().equals(CategoryId)){
+				return c.getName();
+			}
+			
+		}
+		return null;
 	}
 }
