@@ -152,7 +152,7 @@ public class PEMService {
 		List<Expense> expList=repo.expList;
 		for(int i=0;i<expList.size();i++){
 			Expense exp=expList.get(i);
-			String catName=getCategoryNameById(exp.getCategoryId());
+			String catName=reportService.getCategoryNameById(exp.getCategoryId());
 			String dateString=DateUtil.dateToString(exp.getDate());
 			System.out.println((i+1)+"---"+catName+"---"+exp.getAmount()+"---"+dateString);
 		}
@@ -175,11 +175,29 @@ public class PEMService {
 	}
 	
 	public void onReportYearly(){
-		System.out.println("yearly Reporting..");
+		System.out.println("Yearly Expense Total...");
+		Map<Integer, Float> resultMap=reportService.calculateYearlyTotal();
+		
+		Set<Integer> keys=resultMap.keySet();
+		Float total=0.0f;
+		for(Integer year: keys){
+			Float exp=resultMap.get(year);
+			total=total+exp;
+			System.out.println(year+" , "+exp);
+		}
+		System.out.println("----------------");
+		System.out.println("Total expense in INR : "+total );
 	}
 	
 	public void onReportCategoryWise(){
-		System.out.println("Category Wise Reporting...");
+		System.out.println("Category Wise Expense");
+		Map<String,Float> resultMap=reportService.calculateCategorizedTotal();
+		Set<String> key=resultMap.keySet();
+		for(String categoryName:key){
+			System.out.println(categoryName+" , "+resultMap.get(categoryName));
+		}
+		
+		
 	} 
 	
 	public void pressAnyKeyToCountinue(){
@@ -189,16 +207,6 @@ public class PEMService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	String getCategoryNameById(Long CategoryId){
-		for(Category c:repo.catList){
-			if(c.getCategoryId().equals(CategoryId)){
-				return c.getName();
-			}
-			
-		}
-		return null;
 	}
 	
 	private void prepareSampleData() {

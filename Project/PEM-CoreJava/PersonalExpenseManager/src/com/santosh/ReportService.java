@@ -29,4 +29,48 @@ public class ReportService {
 		}
 		return map;
 	}
+	
+	public Map<Integer,Float> calculateYearlyTotal(){
+		Map<Integer,Float> map= new TreeMap<>();
+		for(Expense exp: repo.expList){
+			Date expDate=exp.getDate();
+			Integer year=DateUtil.getYear(expDate);
+			if(map.containsKey(year)){
+				Float total=map.get(year);
+				total=total+exp.getAmount();
+				map.put(year, total);
+			}
+			else {
+				map.put(year, exp.getAmount());
+			}
+		}
+		return map;
+	}
+	
+	public Map<String,Float> calculateCategorizedTotal(){
+		Map<String,Float> map= new TreeMap<>();
+		for(Expense exp: repo.expList){
+			Long categoryID=exp.getCategoryId();
+			String catName=this.getCategoryNameById(categoryID);
+			if(map.containsKey(catName)){
+				Float total=map.get(catName);
+				total=total+exp.getAmount();
+				map.put(catName, total);
+			}
+			else {
+				map.put(catName, exp.getAmount());
+			}
+		}
+		return map;
+	}
+	
+	public String getCategoryNameById(Long CategoryId){
+		for(Category c:repo.catList){
+			if(c.getCategoryId().equals(CategoryId)){
+				return c.getName();
+			}
+			
+		}
+		return null;
+	}
 }
