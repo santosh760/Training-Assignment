@@ -165,7 +165,12 @@ public class PEMService {
 		Map<String,Float> resultMap=reportService.calculateMonthlyTotal();
 		Set<String> keys=resultMap.keySet();
 		for(String yearMoth: keys){
-			System.out.println(yearMoth+" : "+resultMap.get(yearMoth));
+			
+			String[] arr=yearMoth.split(",");
+			String year=arr[0];
+			Integer monthno=new Integer(arr[1]);
+			String monthName=DateUtil.getMonthName(monthno);
+			System.out.println(year+",  "+monthName+" , "+resultMap.get(yearMoth));
 		}
 	}
 	

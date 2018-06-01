@@ -2,6 +2,7 @@ package com.santosh;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.Month;
 import java.util.Date;
 
 /**
@@ -10,6 +11,8 @@ import java.util.Date;
  *
  */
 public class DateUtil {
+	
+	public static final String[] MONTHS={"January","February","March","April","May","June","July","August","September","October","November","December"};
 	
 	public static Date stringToDate(String dateAsString){
 		SimpleDateFormat df=new SimpleDateFormat("dd/MM/yyyy");
@@ -28,8 +31,13 @@ public class DateUtil {
 	}
 	
 	public static String getYearAndMoth(Date date){
-		SimpleDateFormat df=new SimpleDateFormat("yyyy,MMM");
+		SimpleDateFormat df=new SimpleDateFormat("yyyy,MM");
 		return df.format(date);
+		
+	}
+	
+	public static String getMonthName(Integer monthno){
+		return MONTHS[monthno-1];
 		
 	}
 }
