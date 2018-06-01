@@ -1,5 +1,6 @@
 package com.santosh;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -21,10 +22,42 @@ public class PEMService {
 			printMenu();
 			
 			switch (choice) {
+			
 			case 1:
-					System.out.println("adding caegory..");
+					onAddCategory();
+					pressAnyKeyToCountinue();
 				break;
-
+			
+			case 2:
+				onCategoryList();
+				pressAnyKeyToCountinue();
+			break;
+			
+			case 3:
+				onExpenseEntry();
+				pressAnyKeyToCountinue();
+			break;
+			
+			case 4:
+				onExpenseList();
+				pressAnyKeyToCountinue();
+			break;
+			
+			case 5:
+				onReportMonthly();
+				pressAnyKeyToCountinue();
+			break;
+			
+			case 6:
+				onReportYearly();
+				pressAnyKeyToCountinue();
+			break;
+			
+			case 7:
+				onReportCategoryWise();
+				pressAnyKeyToCountinue();
+			break;
+			
 			case 0:
 					System.exit(0);
 					break;
@@ -51,4 +84,41 @@ public class PEMService {
 		choice=in.nextInt();
 	}
 
+	public void onAddCategory(){
+		System.out.println("adding caegory..");
+	}
+	
+	public void onCategoryList(){
+		System.out.println("Category Listing...");
+		
+	}
+	
+	public void onExpenseEntry(){
+		System.out.println("Expense Entry...");
+	}
+	
+	public void onExpenseList(){
+		System.out.println("Expense Listing...");
+	}
+	
+	public void onReportMonthly(){
+		System.out.println("Monthly Reporting...");
+	}
+	
+	public void onReportYearly(){
+		System.out.println("yearly Reporting..");
+	}
+	
+	public void onReportCategoryWise(){
+		System.out.println("Category Wise Reporting...");
+	} 
+	
+	public void pressAnyKeyToCountinue(){
+		System.out.println("Press any key to countinue");
+		try {
+			System.in.read();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
 }
