@@ -13,6 +13,10 @@ public class ReportService {
 
 	private Repositoy repo=Repositoy.getRepository();
 	
+	/**
+	 * This method will calculate monthly expense
+	 * @return Map of data
+	 */
 	public Map<String,Float> calculateMonthlyTotal(){
 		Map<String,Float> map= new TreeMap<>();
 		for(Expense exp: repo.expList){
@@ -30,6 +34,10 @@ public class ReportService {
 		return map;
 	}
 	
+	/**
+	 * This method will calculate yearly expense
+	 * @return Map of data
+	 */
 	public Map<Integer,Float> calculateYearlyTotal(){
 		Map<Integer,Float> map= new TreeMap<>();
 		for(Expense exp: repo.expList){
@@ -47,6 +55,10 @@ public class ReportService {
 		return map;
 	}
 	
+	/**
+	 * This method will calculate category wise expense
+	 * @return Map of data
+	 */
 	public Map<String,Float> calculateCategorizedTotal(){
 		Map<String,Float> map= new TreeMap<>();
 		for(Expense exp: repo.expList){
@@ -64,6 +76,11 @@ public class ReportService {
 		return map;
 	}
 	
+	/**
+	 * This method will to get category name by id
+	 * @param CategoryId
+	 * @return Name of Category
+	 */
 	public String getCategoryNameById(Long CategoryId){
 		for(Category c:repo.catList){
 			if(c.getCategoryId().equals(CategoryId)){

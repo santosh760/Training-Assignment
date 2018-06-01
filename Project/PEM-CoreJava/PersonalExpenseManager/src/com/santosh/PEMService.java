@@ -83,6 +83,9 @@ public class PEMService {
 		}
 	}
 	
+	/**
+	 * This method will create Menu item
+	 */
 	public void printMenu(){
 		System.out.println("---------PEM Application---------");
 		System.out.println("1. Add Category");
@@ -98,6 +101,9 @@ public class PEMService {
 		choice=in.nextInt();
 	}
 
+	/**
+	 * This method will add category into List
+	 */
 	public void onAddCategory(){
 		in.nextLine();
 		System.out.print("Enter Category Name :");
@@ -108,6 +114,9 @@ public class PEMService {
 		
 	}
 	
+	/**
+	 * This method will List all the category
+	 */
 	public void onCategoryList(){
 		System.out.println("Category List");
 		List<Category> category=repo.catList;
@@ -118,6 +127,9 @@ public class PEMService {
 		
 	}
 	
+	/**
+	 * This method will add expense into the category
+	 */
 	public void onExpenseEntry(){
 		System.out.println("Enter Details For Expense Entry :");
 		onCategoryList();
@@ -147,6 +159,9 @@ public class PEMService {
 		
 	}
 	
+	/**
+	 * This method will list all the Expense
+	 */
 	public void onExpenseList(){
 		System.out.println("Expense List");
 		List<Expense> expList=repo.expList;
@@ -159,7 +174,9 @@ public class PEMService {
 		
 	}
 	
-	
+	/**
+	 * This methos will report expense on monthly basis
+	 */
 	public void onReportMonthly(){
 		System.out.println("Monthly Expense Total..");
 		Map<String,Float> resultMap=reportService.calculateMonthlyTotal();
@@ -174,6 +191,9 @@ public class PEMService {
 		}
 	}
 	
+	/**
+	 * This methos will report expense on yearly basis
+	 */
 	public void onReportYearly(){
 		System.out.println("Yearly Expense Total...");
 		Map<Integer, Float> resultMap=reportService.calculateYearlyTotal();
@@ -189,6 +209,9 @@ public class PEMService {
 		System.out.println("Total expense in INR : "+total );
 	}
 	
+	/**
+	 * This methos will report expense on Category Wise
+	 */
 	public void onReportCategoryWise(){
 		System.out.println("Category Wise Expense");
 		Map<String,Float> resultMap=reportService.calculateCategorizedTotal();
@@ -200,6 +223,9 @@ public class PEMService {
 		
 	} 
 	
+	/**
+	 * This method will ask user to press enter to countinue
+	 */
 	public void pressAnyKeyToCountinue(){
 		System.out.println("Press any key to countinue");
 		try {
@@ -209,6 +235,9 @@ public class PEMService {
 		}
 	}
 	
+	/**
+	 * This method will prepare some sample data into List
+	 */
 	private void prepareSampleData() {
 		
 		Category c1=new Category("Mobile Bill");
@@ -235,6 +264,9 @@ public class PEMService {
 		
 	}
 	
+	/**
+	 * This method will delay the process of input data so that every category got different id
+	 */
 	public void delay(){
 		try {
 			Thread.sleep(10);
