@@ -1,6 +1,7 @@
 package com.santosh;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -9,6 +10,8 @@ import java.util.Scanner;
  *
  */
 public class PEMService {
+	
+	Repositoy repo=Repositoy.getRepository();
 	
 	private Scanner in=new Scanner(System.in);
 	private int choice;
@@ -85,11 +88,22 @@ public class PEMService {
 	}
 
 	public void onAddCategory(){
-		System.out.println("adding caegory..");
+		in.nextLine();
+		System.out.print("Enter Category Name :");
+		String catName=in.nextLine();
+		Category cat=new Category(catName);
+		repo.catList.add(cat);
+		System.out.println("Category Name Added...");
+		
 	}
 	
 	public void onCategoryList(){
-		System.out.println("Category Listing...");
+		System.out.println("Category List");
+		List<Category> category=repo.catList;
+		for(int i=0;i<category.size();i++){
+			Category c=category.get(i);
+			System.out.println((i+1)+" "+ c.getName()+" "+c.getCategoryId());
+		}
 		
 	}
 	

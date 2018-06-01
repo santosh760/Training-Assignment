@@ -1,5 +1,6 @@
 package com.santosh;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -12,12 +13,12 @@ public class Repositoy {
 	/**
 	 * List of Expense
 	 */
-	public List<Expense> expList;
+	public List<Expense> expList=new ArrayList<>();
 	
 	/**
 	 * List of Category
 	 */
-	public List<Category> catList;
+	public List<Category> catList=new ArrayList<>();
 	
 	private static Repositoy repository;
 	
