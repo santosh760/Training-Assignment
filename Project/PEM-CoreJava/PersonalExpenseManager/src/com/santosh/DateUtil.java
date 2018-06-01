@@ -26,4 +26,10 @@ public class DateUtil {
 		return df.format(date);
 		
 	}
+	
+	public static String getYearAndMoth(Date date){
+		SimpleDateFormat df=new SimpleDateFormat("yyyy,MMM");
+		return df.format(date);
+		
+	}
 }

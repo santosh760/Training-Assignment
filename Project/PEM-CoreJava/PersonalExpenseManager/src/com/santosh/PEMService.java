@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * This class will provide all service method for PEM
@@ -15,8 +17,15 @@ public class PEMService {
 	
 	Repositoy repo=Repositoy.getRepository();
 	
+	ReportService reportService=new ReportService();
+	
 	private Scanner in=new Scanner(System.in);
 	private int choice;
+	
+	public PEMService() {
+		
+		prepareSampleData();		
+	}
 	
 	/**
 	 * This method will display the Menu
@@ -104,7 +113,7 @@ public class PEMService {
 		List<Category> category=repo.catList;
 		for(int i=0;i<category.size();i++){
 			Category c=category.get(i);
-			System.out.println((i+1)+" "+ c.getName()+" "+c.getCategoryId());
+			System.out.println((i+1)+"---"+ c.getName()+"---"+c.getCategoryId());
 		}
 		
 	}
@@ -145,14 +154,19 @@ public class PEMService {
 			Expense exp=expList.get(i);
 			String catName=getCategoryNameById(exp.getCategoryId());
 			String dateString=DateUtil.dateToString(exp.getDate());
-			System.out.println((i+1)+" "+catName+" "+exp.getAmount()+" "+dateString);
+			System.out.println((i+1)+"---"+catName+"---"+exp.getAmount()+"---"+dateString);
 		}
 		
 	}
 	
 	
 	public void onReportMonthly(){
-		System.out.println("Monthly Reporting...");
+		System.out.println("Monthly Expense Total..");
+		Map<String,Float> resultMap=reportService.calculateMonthlyTotal();
+		Set<String> keys=resultMap.keySet();
+		for(String yearMoth: keys){
+			System.out.println(yearMoth+" : "+resultMap.get(yearMoth));
+		}
 	}
 	
 	public void onReportYearly(){
@@ -180,5 +194,39 @@ public class PEMService {
 			
 		}
 		return null;
+	}
+	
+	private void prepareSampleData() {
+		
+		Category c1=new Category("Mobile Bill");
+		delay();
+		Category c2=new Category("Electricity Bill");
+		delay();
+		Category c3=new Category("Party Bill");
+		delay();
+		
+		repo.catList.add(c1);
+		repo.catList.add(c2);
+		repo.catList.add(c3);
+		
+		Expense e1=new Expense(c1.getCategoryId(), 300.0F, DateUtil.stringToDate("2/2/2017"), "Mobile Bill Expense");
+		delay();
+		Expense e2=new Expense(c2.getCategoryId(), 300.0F, DateUtil.stringToDate("2/12/2017"), "Electric Bill Expense");
+		delay();
+		Expense e3=new Expense(c1.getCategoryId(), 300.0F, DateUtil.stringToDate("2/2/2018"), "Party Bill Expense");
+		delay();
+		
+		repo.expList.add(e1);
+		repo.expList.add(e2);
+		repo.expList.add(e3);
+		
+	}
+	
+	public void delay(){
+		try {
+			Thread.sleep(10);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
 }
