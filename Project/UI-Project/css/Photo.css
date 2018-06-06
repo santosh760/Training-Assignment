@@ -1,153 +1,114 @@
-.main{
-    
-    width: 1100px;
-    height: 500px;
+body
+{
+    background-color: blueviolet;
 }
 
-body{
-    background-color: darkviolet;
-    margin-left: 100px;
-    margin-right: 200px;
-    margin-top: 100px;
-    margin-bottom: 100px;
-    position: relative;
-    font-family: "Poppins", sans-serif;
-    
-}
-.hero-area{
-    background-image: url("D:/yash documents/UI Assignment/img/header-bg.jpg"); 
-    height: 580px;
-}
-.container{
-    height: 200px;
-    opacity: 1.0;
-}
-.banner .one {   
-    text-align: center;    
-}
-.one a{
-     text-decoration: none;
-    color: white;
-}
-.best{
-    text-transform: uppercase;
-    color: white;
-    font-size: 20px;
-    font-weight: 100;
-    text-align: center;
-}
-.pe{
-    font-size: 7vw;
-    color: white;
-    text-align: center;
-}
-.logo{
-    float:left;
-}
-.main-menubar{
-    float:right;
-    color: white;
-    text-decoration: none;
-}
-.main-menubar .hide a{
-    color: white;
-    text-decoration: none;
-    margin-right: 20px
+.img
+{
+    background: url("../img/header-bg.jpg") no-repeat center/contain;
+    background-size: cover;
 }
 
-@media screen and (max-width:500px) {
-  .logo, .main-menubar {
-    width:100%; /* The width is 100%, when the viewport is 800px or smaller */
-  }
+.main 
+{
+    width: 80%;
+    margin: 0 auto;
+    margin-top: 6rem;
+        
 }
-section{
-    background-color: white;
-    width: 1100px;
-    overflow: auto;
+
+.header-top
+{
+    height: 250px;
 }
-.row{
-   
+
+a,h1,h2,h3,h4
+{
+    color: white;
 }
-.col-mda{
-    width: 500px;
+
+.main-center
+{
+    text-align: center;
+}
+
+.logo
+{
     float: left;
-    margin-right: 580px;
-    margin-left: 20px;
-    padding-top: 150px;
+    filter: opacity(100%);
 }
-.feature-left h2{
-    color: lightgray;
-    font-size: 36px;
-    font-weight: 100;
-}
-.feature-left h2 span{
-    color: black;
-    font-weight: 600;
-}
-.feature-left p{
-    color: darkgray;
-}
-.col-mdb{
-    width: 500px;
+
+.menu
+{
     float: right;
 }
-@media screen and (max-width:500px) {
-  .feature-left, .col-md-6 {
-    width:100%; 
-  }
+
+.main-container {
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 75%;
 }
-.sliderbox{
-    position: relative;
-    width: 2500px;
-    animation-name: slideranimation;
-    animation-duration: 20s;
-    animation-iteration-count: infinite;
+
+.main-wrapper-row
+{
+    text-align: center;
+    padding-left: 15px;
+    padding-right: 15px;
 }
-.sliderbox img{
+
+.row1,.row2
+{
+  margin-right: auto;
+  margin-left: auto;
+  padding-right: 15px;
+  padding-left: 15px;
+  width: 75%;  
 }
-@keyframes slideranimation{
-    
-    0%{
-        left: 0px;
-    }
-    20%{
-        left: 0px;
-    }
-    25%{
-        left: -555px;
-    }
-    45%{
-        left: -555px;
-    }
-    50%{
-        left: -1110px;
-    }
-    70%{
-        left: -1110px;
-    }
-    75%{
-        left: -1665px;
-    }
+
+.first-img
+{
+    float: left;
+    padding-right: 60%;
 }
-.parallux-area{
-    height: 500px;
-    background-image: url("D:/yash documents/UI Assignment/img/parallux-bg.jpg");
-}
-.col{
-    width: 400px;
-    padding-top: 130px;
+
+.second-img
+{
     float: right;
+    padding-left: 60%;
 }
-.col h2{
-    color: white;
-    font-weight: 100;
-    font-size: 36px;
+.third-img
+{
+    float: left;
+    padding-right: 60%;
 }
-.col h2 span{
-    font-weight: 600;
+
+.fourth-img
+{
+    float: right;
+    padding-left: 60%;
 }
-.col p{
-    color: white;
-    margin-top: 30px;
-    margin-bottom: 25px;
+
+.msg-container
+{
+    text-align: center;
 }
+
+.img-container
+{
+    height: 400px;
+}
+
+.news-row
+{
+ text-align: center    
+}
+
+.footer
+{
+    background-color: black;
+    text-align: center;
+
+}
+
