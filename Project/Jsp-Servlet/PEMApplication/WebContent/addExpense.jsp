@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Category List</title>
+<title>Add Expense</title>
 
 <link rel="stylesheet" href="static/css/bootstrap.min.css">
 <link rel="stylesheet" href="static/css/font-awesome.min.css">
@@ -40,9 +40,37 @@
                     </table>
                     </div>
                     </div>
+  <br><br>
+  <center>
+		<fieldset style="width:600px">
+			<legend><h3>Add Expense Form</h3></legend>
+			<form action="AddExpense" method="post">
+				<table>
+					<tr>
+						<td>Enter Category ID From Above List -</td>
+						<td><input type="text" name="categoryId"></td>
+					</tr>
+					<tr>
+						<td>Enter Amount -</td>
+						<td><input type="text" name="amount"></td>
+					</tr>
+					<tr>
+						<td>Date -</td>
+						<td><input type="date" name="date"></td>
+					</tr>
+					<tr>
+						<td>Remark -</td>
+						<td><input type="text" name="remark"></td>
+					</tr>
+					</table>
+				
+				<br><br><button type="submit" value="Submit">Add Expense</button>
+				</form>
+		</fieldset>
+	</center>
+
 
 <div align="center">
 <%@include file="common/footer.jsp"%>
-</div>
 </body>
 </html>

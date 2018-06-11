@@ -1,6 +1,7 @@
 package com.santosh.pem.serviceimpl;
 
 import java.util.List;
+import java.util.Map;
 
 import com.santosh.pem.dao.PEMDao;
 import com.santosh.pem.daoimpl.PEMDaoImpl;
@@ -49,27 +50,27 @@ public class PEMServiceImpl implements PEMService {
 	}
 
 	@Override
-	public List<Expense> expenseList(Integer userId, Integer categoryId) {
+	public List<Expense> expenseList(Integer userId) {
 		
-		return dao.expenseList(userId, categoryId);
+		return dao.expenseList(userId);
 	}
 
 	@Override
-	public List<Expense> reportMonthly(Integer userId, Integer categoryId) {
+	public Map<String,Integer> reportMonthly(Integer userId) {
 		
-		return dao.reportMonthly(userId, categoryId);
+		return dao.reportMonthly(userId);
 	}
 
 	@Override
-	public List<Expense> reportYearly(Integer userId, Integer categoryId) {
+	public Map<String,Integer> reportYearly(Integer userId) {
 		
-		return dao.reportYearly(userId, categoryId);
+		return dao.reportYearly(userId);
 	}
 
 	@Override
-	public List<Expense> reportCategoryWise(Integer userId, Integer categoryId) {
+	public Map<Integer,Integer> reportCategoryWise(Integer userId) {
 		
-		return dao.reportCategoryWise(userId, categoryId);
+		return dao.reportCategoryWise(userId);
 	}
 
 }

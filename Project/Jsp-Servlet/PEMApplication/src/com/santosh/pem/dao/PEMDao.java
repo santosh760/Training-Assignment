@@ -1,6 +1,7 @@
 package com.santosh.pem.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.santosh.pem.domain.Category;
 import com.santosh.pem.domain.Expense;
@@ -54,7 +55,7 @@ public interface PEMDao {
 	 * @param categoryId
 	 * @return list of expense
 	 */
-	List<Expense> expenseList(Integer userId,Integer categoryId);
+	List<Expense> expenseList(Integer userId);
 	
 	/**
 	 * This method will help to report all expense monthly wise
@@ -62,7 +63,7 @@ public interface PEMDao {
 	 * @param categoryId
 	 * @return list of expense
 	 */
-	List<Expense> reportMonthly(Integer userId,Integer categoryId);
+	Map<String,Integer> reportMonthly(Integer userId);
 	
 	/**
 	 * This method will help to report all expense yearly wise
@@ -70,7 +71,7 @@ public interface PEMDao {
 	 * @param categoryId
 	 * @return list of expense
 	 */
-	List<Expense> reportYearly(Integer userId,Integer categoryId);
+	Map<String,Integer> reportYearly(Integer userId);
 	
 	/**
 	 * This method will help to report all expense category wise
@@ -78,6 +79,6 @@ public interface PEMDao {
 	 * @param categoryId
 	 * @return list of expense
 	 */
-	List<Expense> reportCategoryWise(Integer userId,Integer categoryId);
+	Map<Integer,Integer> reportCategoryWise(Integer userId);
 	
 }

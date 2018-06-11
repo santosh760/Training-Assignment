@@ -1,32 +1,27 @@
 package com.santosh.pem.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Map;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.jsp.PageContext;
 
-import com.santosh.pem.domain.Category;
 import com.santosh.pem.service.PEMService;
 import com.santosh.pem.serviceimpl.PEMServiceImpl;
 
 /**
- * Servlet implementation class CategoryList
+ * Servlet implementation class ReportMonthly
  */
-@WebServlet("/CategoryList")
-public class CategoryList extends HttpServlet {
+@WebServlet("/ReportMonthly")
+public class ReportMonthly extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
@@ -35,11 +30,15 @@ public class CategoryList extends HttpServlet {
 		HttpSession session=request.getSession();
 		Integer userId=(Integer) session.getAttribute("userId");
 		
-		List<Category> categoryList=service.categoryList(userId);
+		Map<String, Integer> yearlyReport=service.reportMonthly(userId);
 		
-		request.setAttribute("catList", categoryList);
-		RequestDispatcher rd=request.getRequestDispatcher("categoryList.jsp");
-		rd.forward(request, response);
+		for(Map.Entry<String, Integer> entry:yearlyReport.entrySet()){
+			String key=entry.getKey();
+			Integer value=entry.getValue();
+			System.out.println();
+			System.out.println("Category ID---"+key);
+			System.out.println("Expense-------"+value);
+		}
 	}
 
 }

@@ -1,6 +1,9 @@
 package com.santosh.pem.controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,40 +12,33 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.santosh.pem.domain.Category;
+import com.santosh.pem.domain.Expense;
 import com.santosh.pem.service.PEMService;
 import com.santosh.pem.serviceimpl.PEMServiceImpl;
 
 /**
- * Servlet implementation class AddCategory
+ * Servlet implementation class ExpenseList
  */
-@WebServlet("/AddCategory")
-public class AddCategory extends HttpServlet {
+@WebServlet("/ExpenseList")
+public class ExpenseList extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		PEMService service=new PEMServiceImpl();
 		
-		String categoryName=request.getParameter("categoryName");
 		HttpSession session=request.getSession();
 		Integer userId=(Integer) session.getAttribute("userId");
-		System.out.println(userId);
 		
-		Category category=new Category(categoryName , userId);
-		int result= service.addCategory(category);
-		System.out.println(result);
-		if(result==1){
-			response.sendRedirect("categoryList.jsp");
-		}
-		else
-		{
-	
-			response.sendRedirect("addCategory.jsp");
-		}
+		List<Expense> expenseList=service.expenseList(userId);
+		
+		request.setAttribute("expList", expenseList);
+		RequestDispatcher rd=request.getRequestDispatcher("expenseList.jsp");
+		rd.forward(request, response);
 	}
 
 }

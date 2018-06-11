@@ -14,19 +14,19 @@
               <a class="nav-link" href="CategoryList">List Category<span class="sr-only">(current)</span></a>
             </li>
              <li>
-              <a class="nav-link" href="#">Add Expense<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="AddExpenseList">Add Expense<span class="sr-only">(current)</span></a>
             </li>
              <li>
-              <a class="nav-link" href="#">List Expense<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="ExpenseList">List Expense<span class="sr-only">(current)</span></a>
             </li>
              <li>
-              <a class="nav-link" href="#">Report Monthly<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="ReportMonthly">Report Monthly<span class="sr-only">(current)</span></a>
             </li>
               <li>
-              <a class="nav-link" href="#">Report Yearly<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="ReportYearly">Report Yearly<span class="sr-only">(current)</span></a>
             </li>
              <li>
-              <a class="nav-link" href="#">Report Category Wise<span class="sr-only">(current)</span></a>
+              <a class="nav-link" href="ReportCategoryWise">Report Category Wise<span class="sr-only">(current)</span></a>
             </li>
             <li>
               <a class="nav-link" href="index.jsp">Logout<span class="sr-only">(current)</span></a>

@@ -3,6 +3,7 @@ package com.santosh.pem.daoimpl;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -126,32 +127,160 @@ public class PEMDaoImpl extends DbUtil implements PEMDao {
 
 	@Override
 	public int addExpense(Expense expense) {
-		// TODO Auto-generated method stub
+		try
+		{
+			
+			String sql= "INSERT INTO expense (userId,categoryId,amount,date,remark) VALUES (?,?,?,?,?)";
+			
+			PreparedStatement stmt=connect().prepareStatement(sql);
+			
+			stmt.setInt(1, expense.getUserId());
+			stmt.setInt(2, expense.getCategoryId());
+			stmt.setInt(3, expense.getAmount());
+			stmt.setString(4, expense.getDate());
+			stmt.setString(5, expense.getRemark());
+			
+			int result=stmt.executeUpdate();
+			
+			return result;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+		}
+		
 		return 0;
 	}
 
 	@Override
-	public List<Expense> expenseList(Integer userId, Integer categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Expense> expenseList(Integer userId) {
+		try{
+			String sql= "SELECT * FROM expense where userId=?";
+			
+			PreparedStatement stmt=connect().prepareStatement(sql);
+			
+			stmt.setInt(1, userId);
+			
+			ResultSet rs=stmt.executeQuery();
+			
+			List<Expense> expenseList=new ArrayList<>();
+			
+			while(rs.next()){
+				
+				Expense expense=new Expense(rs.getInt("expenseId"),rs.getInt("categoryId"), rs.getInt("amount"), rs.getString("date"), rs.getString("remark"));
+				expenseList.add(expense);
+				
+			}
+			
+			return expenseList;
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+			return null;
 	}
 
 	@Override
-	public List<Expense> reportMonthly(Integer userId, Integer categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String,Integer> reportMonthly(Integer userId) {
+		try{
+			String sql= "SELECT date,amount FROM expense where userId=?";
+			
+			PreparedStatement stmt=connect().prepareStatement(sql);
+			
+			stmt.setInt(1, userId);
+			
+			ResultSet rs=stmt.executeQuery();
+			
+			Map<String,Integer> map=new HashMap<>();
+			
+			while(rs.next()){
+				String date=rs.getString("date");
+				Integer amount=rs.getInt("amount");
+				String year=date.substring(0, 4);
+				String month=date.substring(5,7);
+				String yearMonth=year+"-"+month;
+				System.out.println(yearMonth);
+				if(map.containsKey(yearMonth)){
+					int total=map.get(yearMonth);
+					total=total+amount;
+					map.put(yearMonth, total);
+				}
+				else{
+					map.put(yearMonth, amount);
+				}
+				
+				
+			}
+			
+			return map;
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+			return null;
 	}
 
 	@Override
-	public List<Expense> reportYearly(Integer userId, Integer categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String,Integer> reportYearly(Integer userId) {
+		try{
+			String sql= "SELECT date,amount FROM expense where userId=?";
+			
+			PreparedStatement stmt=connect().prepareStatement(sql);
+			
+			stmt.setInt(1, userId);
+			
+			ResultSet rs=stmt.executeQuery();
+			
+			Map<String,Integer> map=new HashMap<>();
+			
+			while(rs.next()){
+				String date=rs.getString("date");
+				Integer amount=rs.getInt("amount");
+				String year=date.substring(0, 4);
+				if(map.containsKey(year)){
+					int total=map.get(year);
+					total=total+amount;
+					map.put(year, total);
+				}
+				else{
+					map.put(year, amount);
+				}
+				
+				
+			}
+			
+			return map;
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+			return null;
 	}
 
 	@Override
-	public List<Expense> reportCategoryWise(Integer userId, Integer categoryId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<Integer,Integer> reportCategoryWise(Integer userId) {
+		try{
+			String sql= "SELECT categoryId,SUM(amount) as 'total' FROM expense where userId=? GROUP BY categoryId";
+			
+			PreparedStatement stmt=connect().prepareStatement(sql);
+			
+			stmt.setInt(1, userId);
+			
+			ResultSet rs=stmt.executeQuery();
+			
+			Map<Integer,Integer> map=new TreeMap<>();
+			
+			while(rs.next()){
+				
+				map.put(rs.getInt("categoryId"), rs.getInt("total"));
+				
+			}
+			
+			return map;
+			}
+			catch (SQLException e){
+				e.printStackTrace();
+			}
+			return null;
 	}
 
 }

@@ -1,7 +1,8 @@
 package com.santosh.pem.domain;
 
 import java.io.Serializable;
-import java.util.Date;
+import java.sql.Date;
+
 
 /**
  * This class is used as POJO for Expense
@@ -29,7 +30,7 @@ public class Expense implements Serializable {
 	/**
 	 * Expense date
 	 */
-	private Date date;
+	private String date;
 	
 	/**
 	 * remark of Expense
@@ -65,11 +66,11 @@ public class Expense implements Serializable {
 		this.amount = amount;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 
@@ -90,7 +91,7 @@ public class Expense implements Serializable {
 	}
 
 	
-	public Expense(int categoryId, int amount, Date date, String remark, int userId) {
+	public Expense(int categoryId, int amount, String date, String remark, int userId) {
 		super();
 		this.categoryId = categoryId;
 		this.amount = amount;
@@ -102,6 +103,29 @@ public class Expense implements Serializable {
 	public Expense() {
 
 	}
+	
+
+	public Expense(int categoryId, int amount) {
+		super();
+		this.categoryId = categoryId;
+		this.amount = amount;
+	}
+
+	public Expense(int expenseId, int categoryId, int amount, String date, String remark) {
+		super();
+		this.expenseId = expenseId;
+		this.categoryId = categoryId;
+		this.amount = amount;
+		this.date = date;
+		this.remark = remark;
+	}
+
+	@Override
+	public String toString() {
+		return "Expense [expenseId=" + expenseId + ", categoryId=" + categoryId + ", amount=" + amount + ", date="
+				+ date + ", remark=" + remark + ", userId=" + userId + "]";
+	}
 
 
+	
 }
