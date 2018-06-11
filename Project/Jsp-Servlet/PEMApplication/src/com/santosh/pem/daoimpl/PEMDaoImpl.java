@@ -195,9 +195,9 @@ public class PEMDaoImpl extends DbUtil implements PEMDao {
 			while(rs.next()){
 				String date=rs.getString("date");
 				Integer amount=rs.getInt("amount");
-				String year=date.substring(0, 4);
-				String month=date.substring(5,7);
-				String yearMonth=year+"-"+month;
+//				String year=date.substring(0, 4);
+//				String month=date.substring(5,7);
+				String yearMonth=date.substring(0, 7);
 				System.out.println(yearMonth);
 				if(map.containsKey(yearMonth)){
 					int total=map.get(yearMonth);

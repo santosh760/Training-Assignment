@@ -3,6 +3,7 @@ package com.santosh.pem.controller;
 import java.io.IOException;
 import java.util.Map;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,6 +40,10 @@ public class ReportMonthly extends HttpServlet {
 			System.out.println("Category ID---"+key);
 			System.out.println("Expense-------"+value);
 		}
+		
+		request.setAttribute("map", yearlyReport);
+		RequestDispatcher rd=request.getRequestDispatcher("reportMonthly.jsp");
+		rd.forward(request, response);
 	}
 
 }

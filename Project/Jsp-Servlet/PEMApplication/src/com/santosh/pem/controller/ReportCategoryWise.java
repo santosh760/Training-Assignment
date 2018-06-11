@@ -45,7 +45,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response) t
 		}
 
 		
-		request.setAttribute("categoryWiseMap", categoryWiseMap);
+		request.setAttribute("map", categoryWiseMap);
 		RequestDispatcher rd=request.getRequestDispatcher("reportCategoryWise.jsp");
 		rd.forward(request, response);
 	}
