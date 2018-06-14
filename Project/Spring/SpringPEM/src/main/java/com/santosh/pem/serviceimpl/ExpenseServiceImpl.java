@@ -27,22 +27,22 @@ public class ExpenseServiceImpl implements ExpenseService {
 		return dao.expenseList(userId);
 	}
 
-	public int removeExpense(Expense expense) {
+	public int removeExpense(Integer categoryId) {
 		
-		return dao.removeExpense(expense);
+		return dao.removeExpense(categoryId);
 	}
 
-	public Map<String, Integer> reportMonthly(Integer userId) {
+	public List<Expense> reportMonthly(Integer userId) {
 		
 		return dao.reportMonthly(userId);
 	}
 
-	public Map<String, Integer> reportYearly(Integer userId) {
+	public List<Expense> reportYearly(Integer userId) {
 		
 		return dao.reportYearly(userId);
 	}
 
-	public Map<Integer, Integer> reportCategoryWise(Integer userId) {
+	public List<Expense> reportCategoryWise(Integer userId) {
 		
 		return dao.reportCategoryWise(userId);
 	}

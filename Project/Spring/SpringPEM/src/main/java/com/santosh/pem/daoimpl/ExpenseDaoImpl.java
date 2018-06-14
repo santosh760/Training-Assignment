@@ -3,15 +3,20 @@ package com.santosh.pem.daoimpl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.santosh.pem.dao.ExpenseDAO;
+import com.santosh.pem.domain.Category;
 import com.santosh.pem.domain.Expense;
+import com.santosh.pem.rowmapper.CustomCategoryRowMapper;
+import com.santosh.pem.rowmapper.CustomExpenseRowMapper;
 
 @Repository("ExpenseDao")
 public class ExpenseDaoImpl implements ExpenseDAO {
@@ -32,33 +37,57 @@ public class ExpenseDaoImpl implements ExpenseDAO {
 	}
 
 	public int addExpense(Expense expense) {
-		// TODO Auto-generated method stub
-		return 0;
+		String sql = "INSERT INTO expense(userId,categoryId,amount,date,remark) VALUES(?,?,?,?,?)";
+		
+		
+		int result=jdbcTemplate.update(sql, new Object[] {expense.getUserId(),expense.getCategoryId(),expense.getAmount(),expense.getDate(),expense.getRemark()});
+		
+		return result;
 	}
 
 	public List<Expense> expenseList(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+		String sql = "select * from expense where userId = ? ";
+		
+		List<Expense> listExpense=new ArrayList<Expense>();
+		listExpense=jdbcTemplate.query(sql, new CustomExpenseRowMapper(),userId);
+	
+		return listExpense;
 	}
 
-	public int removeExpense(Expense expense) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int removeExpense(Integer expenseId) {
+		
+		String sql = "DELETE FROM expense WHERE expenseId=?";
+		
+		int result=jdbcTemplate.update(sql,expenseId);
+	
+		return result;
 	}
 
-	public Map<String, Integer> reportMonthly(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Expense> reportMonthly(Integer userId) {
+		String sql = "select * from expense where userId = ? ";
+		
+		List<Expense> listExpense=new ArrayList<Expense>();
+		listExpense=jdbcTemplate.query(sql, new CustomExpenseRowMapper(),userId);
+	
+		return listExpense;
 	}
 
-	public Map<String, Integer> reportYearly(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Expense> reportYearly(Integer userId) {
+		String sql = "select * from expense where userId = ? ";
+		
+		List<Expense> listExpense=new ArrayList<Expense>();
+		listExpense=jdbcTemplate.query(sql, new CustomExpenseRowMapper(),userId);
+	
+		return listExpense;
 	}
 
-	public Map<Integer, Integer> reportCategoryWise(Integer userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Expense> reportCategoryWise(Integer userId) {
+		String sql = "select * from expense where userId = ? ";
+		
+		List<Expense> listExpense=new ArrayList<Expense>();
+		listExpense=jdbcTemplate.query(sql, new CustomExpenseRowMapper(),userId);
+	
+		return listExpense;
 	}
 
 }

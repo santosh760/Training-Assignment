@@ -24,10 +24,10 @@ public interface ExpenseDAO {
 	
 	/**
 	 * This method will remove expense
-	 * @param expense
-	 * @return
+	 * @param categoryId
+	 * @return 1-success 0-fail
 	 */
-	int removeExpense(Expense expense);
+	int removeExpense(Integer categoryId);
 	
 	/**
 	 * This method will help to report all expense monthly wise
@@ -35,7 +35,7 @@ public interface ExpenseDAO {
 	 * @param categoryId
 	 * @return list of expense
 	 */
-	Map<String,Integer> reportMonthly(Integer userId);
+	List<Expense> reportMonthly(Integer userId);
 	
 	/**
 	 * This method will help to report all expense yearly wise
@@ -43,7 +43,7 @@ public interface ExpenseDAO {
 	 * @param categoryId
 	 * @return list of expense
 	 */
-	Map<String,Integer> reportYearly(Integer userId);
+	List<Expense> reportYearly(Integer userId);
 	
 	/**
 	 * This method will help to report all expense category wise
@@ -51,6 +51,6 @@ public interface ExpenseDAO {
 	 * @param categoryId
 	 * @return list of expense
 	 */
-	Map<Integer,Integer> reportCategoryWise(Integer userId);
+	List<Expense> reportCategoryWise(Integer userId);
 
 }

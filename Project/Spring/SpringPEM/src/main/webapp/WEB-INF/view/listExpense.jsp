@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PEM Home</title>
+<title>List Expense</title>
 
-<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <s:url var="url_bootstrap" value="/static/css/bootstrap.css" />	
 <s:url var="url_bootstrap_min" value="/static/css/bootstrap.min.css" />
@@ -34,46 +34,46 @@
 <link href="${url_footer}" type="text/css" rel="stylesheet">
 <link href="${url_main}" type="text/css" rel="stylesheet">
 <link href="${url_util}" type="text/css" rel="stylesheet">
-	
+
+<style type="text/css">
+.trList:hover{
+background-color: #ffff99;
+}
+</style>
 </head>
 <body>
+<%@include file="./common/header.jsp"%>
 
 <div class="container-login100" style="background-image: url('./static/images/bg-01.jpg');">
-<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
-<center><a style="color: red">${msg}</a></center>
-			<form class="login100-form validate-form" action="./logincheck.htm" method="post">
+<div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30" style="width: 50%;">
 				<span class="login100-form-title p-b-37">
-					Sign In
+					List of Expense
 				</span>
-
-				<div class="wrap-input100 validate-input m-b-20">
-					<input class="input100" type="text" name="username" placeholder="Login name">
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="wrap-input100 validate-input m-b-25">
-					<input class="input100" type="password" name="password" placeholder="password">
-					<span class="focus-input100"></span>
-				</div>
-
-				<div class="container-login100-form-btn">
-					<button class="login100-form-btn">
-						Sign In
-					</button>
-				</div>
-<br>
-				<div class="text-center">
-					<a href="./addUser.htm" class="txt2 hov1">
-						Sign Up
-					</a>
-				</div>
-			</form>
-            <br>
-            <div  style="text-align: center">
-            <a class="txt2 hov1">&copy;Developed By Santosh Pandey</a>
-            
-            </div>
+				
+				<table style="background-color: aqua" cellpadding="5" class="wrap-input100 validate-input m-b-25">
+	
+	
+                            <tr style="color: red;text-align: center;">
+                                <th>Category Name</th>
+                                <th>Amount</th>
+                                <th>Date</th>
+                                <th>Remark</th>             
+                            </tr>
+                    <c:forEach items="${list}" var="expList">
+                    	<tr style="text-align: center;" class="trList">
+                   
+                                    <td><c:out value="${expList.key}"></c:out></td>
+                                    <td><c:out value="${expList.value.amount}"></c:out></td>
+                                     <td><c:out value="${expList.value.date}"></c:out></td>
+                                      <td><c:out value="${expList.value.remark}"></c:out></td>
+                               
+                        </tr>
+                    </c:forEach>
+                    </table>
 			</div>
-		</div>
+</div>
+<br>
+<br>
+<%@include file="./common/footer.jsp"%>
 </body>
 </html>

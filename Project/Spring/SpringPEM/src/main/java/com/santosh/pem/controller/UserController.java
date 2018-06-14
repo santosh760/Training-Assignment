@@ -21,6 +21,8 @@ public class UserController {
 
 	@Autowired
 	UserService UserService;
+	
+	@Autowired
 	HttpSession session;
 
 	@RequestMapping(value="/home.htm", method=RequestMethod.GET)

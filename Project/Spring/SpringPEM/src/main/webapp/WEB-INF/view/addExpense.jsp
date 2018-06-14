@@ -1,11 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+    pageEncoding="ISO-8859-1"%>
+    <%@ taglib uri="http://www.springframework.org/tags" prefix="s"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PEM Home</title>
+<title>Add Expense</title>
 
 <meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
@@ -34,46 +35,48 @@
 <link href="${url_footer}" type="text/css" rel="stylesheet">
 <link href="${url_main}" type="text/css" rel="stylesheet">
 <link href="${url_util}" type="text/css" rel="stylesheet">
-	
 </head>
 <body>
+<%@include file="./common/header.jsp"%>
 
 <div class="container-login100" style="background-image: url('./static/images/bg-01.jpg');">
 <div class="wrap-login100 p-l-55 p-r-55 p-t-80 p-b-30">
 <center><a style="color: red">${msg}</a></center>
-			<form class="login100-form validate-form" action="./logincheck.htm" method="post">
+			<form class="login100-form validate-form" action="./addExpense.htm" method="post">
 				<span class="login100-form-title p-b-37">
-					Sign In
+					Enter Expense Detail
 				</span>
-
+				
+				<select class="wrap-input100 validate-input m-b-20" name="categoryId">
+				<c:forEach items="${list}" var="catList">
+				<option value="${catList.categoryId}">"${catList.name}"</option>
+				</c:forEach>
+				</select>
+				
 				<div class="wrap-input100 validate-input m-b-20">
-					<input class="input100" type="text" name="username" placeholder="Login name">
+					<input class="input100" type="text" name="amount" placeholder="Amount">
 					<span class="focus-input100"></span>
 				</div>
-
-				<div class="wrap-input100 validate-input m-b-25">
-					<input class="input100" type="password" name="password" placeholder="password">
+				
+				<div class="wrap-input100 validate-input m-b-20">
+					<input class="input100" type="date" name="date">
+					<span class="focus-input100"></span>
+				</div>
+				
+				<div class="wrap-input100 validate-input m-b-20">
+					<input class="input100" type="text" name="remark" placeholder="Remark">
 					<span class="focus-input100"></span>
 				</div>
 
 				<div class="container-login100-form-btn">
 					<button class="login100-form-btn">
-						Sign In
+						Add Expense
 					</button>
 				</div>
-<br>
-				<div class="text-center">
-					<a href="./addUser.htm" class="txt2 hov1">
-						Sign Up
-					</a>
-				</div>
 			</form>
-            <br>
-            <div  style="text-align: center">
-            <a class="txt2 hov1">&copy;Developed By Santosh Pandey</a>
-            
-            </div>
 			</div>
-		</div>
+</div>
+
+<%@include file="./common/footer.jsp"%>
 </body>
 </html>
